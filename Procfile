@@ -1,0 +1,1 @@
+web: gunicorn tala_project.wsgi --log-file -
