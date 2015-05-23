@@ -1,0 +1,88 @@
+{% load staticfiles %}
+
+<html>
+<head>
+
+	<!-- CSS -->
+
+	
+	<!-- Bootstrap with optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	
+	<!-- Fonts (Josefin Sans) -->
+	<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400' type='text/css'>
+	
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	
+	<!-- custom css -->
+	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+	
+	
+	<!-- Scripts -->
+	
+
+	<!-- jQuery, AngularJS, Angular UI Routing and Bootstrap.js -->
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	<!-- jQuery sidr plugin with css -->
+	<script src="{% static 'js/jquery.sidr.min.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'css/jquery.sidr.dark.css' %}">
+	
+	<!-- custom scripts, concanate for production -->
+	<script src="{% static 'js/index_ctrls.js' %}"></script>
+	<script src="{% static 'js/index_jquery.js' %}"></script>
+
+</head>
+	
+<body ng-app="myApp">
+	
+<!-- Menu and search page templates -->	
+	<div id="menu-content" style="display: none;">
+		<ul>
+			<li class="active"> <a href="#test"> Testing </a></li>
+			<li> <a href="#/home"> Home </a> </li>
+			<li> <a style="" href="#/testing"> Testing </a> </li>
+			<li> <a href="#/search"> Search </a> </li>
+			<li> <a href="http://www.google.com"> About Us </a> </li>
+		</ul>
+	</div>
+<!-- ./templates -->
+	
+	<div id="header">
+		<div class="col-sm-3">
+			<div id="logo"> <a id="logo-link" href="#home"> tala </a> </div>
+		</div>
+		<div class="col-sm-7"></div>
+		<div class="col-sm-2">
+			<a id="menu-button"> <span class="ionicons ion-navicon"></span> </a> 
+			<a id="search-button" href="#/search"> <span class="ionicons ion-ios-search"></span> </a>
+		</div>
+	</div> <!-- ./#header -->	
+		
+		<div class="container" id="main-body">
+			<div autoscroll="false" ui-view>
+				<!-- content injected here -->
+			</div>
+		</div> <!-- ./#main-body -->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

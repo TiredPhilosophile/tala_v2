@@ -1,0 +1,6 @@
+*.DS_Store
+*.pyc
+chunkfile.txt
+
+venv
+staticfiles

@@ -1,0 +1,131 @@
+
+<script>
+	$('html,body').scrollTop(0);
+</script>
+
+<div class="col-lg-2 col-md-3">
+	First small column
+	<!-- nested view -->
+	<a ui-sref=".nest1" class="btn btn-default"> Nested view </a>
+
+	<div autoscroll="false" ui-view></div>
+</div>
+<div class="col-lg-8 col-md-9">
+	<div ng-controller="myCtrl">
+		<!-- use ng-repeat for looping, x in names -->
+		<p> Name <input type="text" ng-model="name"> </p>
+		Output: [[ name ]]
+		<hr>
+		My name is [[ lastName ]], [[ fullName() ]]
+
+		<div ng-repeat="n in names">
+			[[ n.name ]] | [[ n.country ]] <br>
+		</div>
+
+		<button ng-click="toggle()"> toggle myVar </button>
+		[[ myVar ]]
+	</div>
+
+	<hr>
+
+	<div ng-controller="pullCtrl">
+		<b><i>Pulled data </b></i><br>
+		<button ng-click="get_data('api/user_data')"> get user data </button>
+		<button ng-click="get_data('api/podcast_data')"> get podcast data </button> 
+		<div ng-repeat="u in users">
+			[[ u.fields.name ]] | Member? <span ng-if="u.fields.member"> Yes </span> <span ng-if="!u.fields.member"> no </span>
+			<!-- ng-if removes element from DOM, ng-hide is simply a javascript .hide() command, item still exists in DOM -->
+		</div>
+	</div>
+
+	<hr>
+
+	<button ng-click="count = count + 1"> increase count </button>
+	[[ count ]]
+
+	<hr>
+	<b> Form testing </b> <br>
+
+	<form ng-app="myApp"  ng-controller="validateCtrl"
+	name="myForm" novalidate>
+
+	<p>Username:<br>
+		<input type="text" name="user" ng-model="user" required>
+		<!-- .$dirty, means user has interacted with the field -->
+		<!-- .$pristine, user has not interacted with the field yet -->
+		<span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+		<span ng-show="myForm.user.$error.required">Username is required.</span>
+		</span>
+	</p>
+
+	<p>Email:<br>
+		<input type="email" name="email" ng-model="email" required>
+		<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+		<span ng-show="myForm.email.$error.required">Email is required.</span>
+		<span ng-show="myForm.email.$error.email">Invalid email address.</span>
+		</span>
+	</p>
+
+	<p>
+	 <input type="submit"
+					ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||
+											 myForm.email.$dirty && myForm.email.$invalid"
+	 >
+	</p>
+
+	</form>
+
+	<hr>
+
+	<b> HTML include </b> <br>
+	User Data include <br>
+
+	<!-- note the single quote in the double quote! -->
+	<div ng-include="'api/user_data.html'"></div>
+	<br>
+	Podcast Data include <br>
+	<div ng-include="'api/podcast_data.html'"></div>
+
+	<hr>
+
+	<div class="row">
+		<div class="col-md-6" ng-controller="formCtrl">
+			<b> angularjs form </b> <br>
+
+			<!-- FORM -->
+			<form ng-submit="processForm()">
+				{% csrf_token %}
+				<!-- NAME -->
+				<div id="name-group" class="form-group">
+					<label>Name</label>
+					<input type="text" name="name" class="form-control" placeholder="Bruce Wayne" ng-model="formData.name">
+					<span class="help-block"></span>
+				</div>
+
+				<!-- SUPERHERO NAME -->
+				<div id="superhero-group" class="form-group">
+					<label>Superhero Alias</label>
+					<input type="text" name="superheroAlias" class="form-control" placeholder="Caped Crusader" ng-model="formData.superheroAlias">
+					<span class="help-block"></span>
+				</div>
+
+				<!-- SUBMIT BUTTON -->
+				<button type="submit" class="btn btn-success btn-lg btn-block">
+					<span class="glyphicon glyphicon-flash"></span> Submit!
+				</button>
+			</form>
+
+			<!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED -->
+			[[ formData ]] [[ something ]]
+
+		</div>
+		<div class="col-md-6">
+			Second column
+		</div>
+	</div> <!-- ./row -->
+
+</div> <!-- ./end main row -->
+<div class="col-lg-2 hidden-md">
+	Third small column
+	<a ui-sref=".nest2" class="btn btn-primary"> Another nested view.</a>
+</div>
