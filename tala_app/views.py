@@ -31,8 +31,6 @@ def search(request):
 def podcast_data(request, podcast):
 	
 	# just use pickle or something., there needs to be a better way
-	
-	print PodcastModel.objects.all()
 
 	podcast_object = PodcastModel.objects.get(name=podcast)
 	userprofile_object = Userprofile.objects.all()[0]
@@ -55,24 +53,16 @@ def podcast_data(request, podcast):
 	print json.dumps(parsed, indent=4, sort_keys=True)
 	
 	# there needs to be a better way to combine json
-
 		
 	return HttpResponse(combined_data)
 
 def userprofile_data(request, username):
 	try:
 		userprofile_object = Userprofile.objects.get(identifier=username)
-		json = userprofile_object.serialized(fields="all")
+		json = serializers.serialize("json", [userprofile_object])
 	except:
 		json = "Cannot find userprofile"
 	return HttpResponse(json)
-
-def user_data(request):
-	if len(Userprofile.objects.all()) == 1:
-		new_user = Userprofile(name="magicjohnson", email="poot@poot.com")
-		new_user.save()
-	data = serializers.serialize("json", Userprofile.objects.all())
-	return HttpResponse(data)
 
 # ---------- Functions ---------- #
 

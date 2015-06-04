@@ -30,11 +30,14 @@
 
 	<div ng-controller="pullCtrl">
 		<b><i>Pulled data </b></i><br>
-		<button ng-click="get_data('api/user_data')"> get user data </button>
-		<button ng-click="get_data('api/podcast_data')"> get podcast data </button> 
+		<button ng-click="get_data('api/userprofile_data/default_username')"> get user data </button>
+		<button ng-click="get_data('api/podcast_data/newpodcast')"> get podcast data </button> 
 		<div ng-repeat="u in users">
-			[[ u.fields.name ]] | Member? <span ng-if="u.fields.member"> Yes </span> <span ng-if="!u.fields.member"> no </span>
+			[[ u.fields.identifier ]] | Member? <span ng-if="u.fields.member"> Yes </span> <span ng-if="!u.fields.member"> no </span>
 			<!-- ng-if removes element from DOM, ng-hide is simply a javascript .hide() command, item still exists in DOM -->
+
+			<!-- for podcasts -->
+			[[ u.fields.name ]] | Assign Episode numbers? <span ng-if="u.fields.AssignEpisodeNumbers"> Yes </span> <span ng-if="!u.fields.AssignEpisodeNumbers"> no </span>
 		</div>
 	</div>
 

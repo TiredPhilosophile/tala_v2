@@ -14,8 +14,6 @@ urlpatterns = patterns('',
 											 
 	url(r'^api/podcast_data/(?P<podcast>.+)', views.podcast_data),
 	url(r'^api/userprofile_data/(?P<username>.+)', views.userprofile_data),
-											 
-	url(r'^api/user_data', views.user_data),
-	url(r'^api/podcast_data', views.podcast_data),
+
 	url(r'^api/process_form', views.process_form),
 )
