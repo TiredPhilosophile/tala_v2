@@ -50,7 +50,7 @@
 			background-color: whitesmoke;
 		}
 
-		#main-body { padding-top: 20px; }
+		#main-body { padding: 20px 0 50px 0 }
 
 		#search-bar {
 			width: 90vw;

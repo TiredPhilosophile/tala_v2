@@ -1,0 +1,5 @@
+Bugs
+
+Datetime fields cause makemigrations/migrate to go on a loop where nothing saves.
+
+Todo:

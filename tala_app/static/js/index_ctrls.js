@@ -65,6 +65,8 @@
 		});
 
 		app.controller('pullCtrl', function($scope, $http) {
+			// link is provided directly from the DOM
+			// the get_data(link) function is called.
 			$scope.get_data = function(link) {
 		    $http.get(link).success(function(response) { 
 		    	// returns array of users
