@@ -8,6 +8,8 @@ import json
 from django.core import serializers
 from itertools import chain
 
+import unicodedata
+
 # you might ensure ensure_csrf_token decorator
 def index(request):
 	return render(request, 'main/index.html')
@@ -41,20 +43,18 @@ def podcast_data(request, podcast):
 		'life': [1, 6, 10, 19],
 	}
 	
+	# Serialize django object
 	serialized_p = serializers.serialize("json", [podcast_object])
 	serialized_u = serializers.serialize("json", [userprofile_object])
-	
-	# combined json using chain
-	combined = list(chain([podcast_object], [userprofile_object]))
-	combined_data = serializers.serialize("json", combined)
-	
-	# print combined json
-	parsed = json.loads(combined_data)
-	print json.dumps(parsed, indent=4, sort_keys=True)
-	
-	# there needs to be a better way to combine json
+
+	response = {
+		'page_data': page_data,
+		'userprofile': json.loads(serialized_p), # unserialize, and then add to response to be serialized later
+	}
+
+	json_response = json.dumps(response, indent=4) # Serialize
 		
-	return HttpResponse(combined_data)
+	return HttpResponse(json_response, content_type='application/json')
 
 def userprofile_data(request, username):
 	try:

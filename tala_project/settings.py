@@ -80,7 +80,7 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
 # Lockdown passwords
-LOCKDOWN_PASSWORDS = ('bloated hippo', 'ziad')
+LOCKDOWN_PASSWORDS = ('password', 'pass')
 
 
 """ Database information for Heroku """

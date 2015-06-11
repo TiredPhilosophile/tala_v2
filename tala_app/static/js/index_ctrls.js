@@ -70,7 +70,8 @@
 			$scope.get_data = function(link) {
 		    $http.get(link).success(function(response) { 
 		    	// returns array of users
-		    	$scope.users = response; 
+		    	$scope.page_data = response.page_data;
+		    	$scope.userprofile = response.userprofile;
 		    });
 		  }
 
